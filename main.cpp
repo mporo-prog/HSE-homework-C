@@ -1,5 +1,6 @@
 #include <iostream>
 #include <clocale>
+#include <cstddef>
 
 class Fighter {
     private:
@@ -77,6 +78,25 @@ class Game {
                     std::cout << "Неизвестная команда!\n";
                     break;
             }
+        }
+    }
+
+    bool AllEnemiesDefeated() const{
+        for(std::size_t indexEnemy = 0; indexEnemy < 3; indexEnemy++){
+            if (enemies[indexEnemy].IsAlive()) return false;
+        }
+
+        return true;
+    }
+
+    void AllEnemiesStatus(){
+        for(std::size_t indexEnemy = 0; indexEnemy < 3; indexEnemy++){
+            enemies[indexEnemy].PrintStatus();
+        }
+
+        if (currentTarget) {
+            std::cout << "Current target:\n";
+            currentTarget->PrintStatus();
         }
     }
 };
